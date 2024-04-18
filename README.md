@@ -1,5 +1,8 @@
-## STEPS TO DEPLOY
+## INFORMATION
 
+- Download de zip file in this directory and extract in your computer
+
+## STEPS TO DEPLOY 
  - First , set a default org for deploy de project
 
  - Second, in the terminal, go to the manifest directory on nuvolar project, command "cd .\manifest\"
