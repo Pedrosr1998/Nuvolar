@@ -6,7 +6,7 @@
 ## STEPS TO DEPLOY 
  - First , set a default org for deploy de project
 
- - Second, in the terminal, go to the manifest directory on nuvolar project, command "cd .\manifest\"
+ - Second, in a terminal, go to the manifest directory on nuvolar project, command "cd .\manifest\"
 
  - Third , use "sf project deploy start --manifest ./package.xml --tests FlightCalculatorControllerTest" for deploy de content in the org, if you are using a 
    Enterprise Edition you must click on Quick deploy after de command is execute (Current Org/Setup/Deployment Status/--content--)
