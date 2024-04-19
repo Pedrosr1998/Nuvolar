@@ -1,7 +1,7 @@
 ## INFORMATION
 
 - Download de zip file in this directory and extract in your computer
-- Open with visual studio code
+- Open with visual studio code -- Nuvolar-main/Nuvolar Project
 
 ## STEPS TO DEPLOY 
  - First , set a default org for deploy de project
