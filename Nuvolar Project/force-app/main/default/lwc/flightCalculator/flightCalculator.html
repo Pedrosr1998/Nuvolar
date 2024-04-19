@@ -1,0 +1,125 @@
+<template>
+    <lightning-spinner lwc:if={isLoading} alternative-text="Loading"></lightning-spinner>
+    
+    <div class="slds-form-element__control slds-box" style="align-self: center; background-color: antiquewhite;">
+        <div class="slds-combobox_container">
+
+            <!-- Search Input -->
+            <lightning-input
+                disabled={isObjectSelectionRO} 
+                required={isRequired}
+                label="Search Departure Airport"
+                type="search"
+                value={selectedDeparture}
+                name="departure"
+                onchange={handleInputChange} 
+                onblur={handleOnBlur}>
+            </lightning-input>
+
+            
+            <div class="first slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+
+                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                        <template for:each={autoCompleteOptions} for:item="option">
+                            <li key={option.IATACode__c} role="presentation" class="slds-listbox__item"
+                                onclick={handleOptionClick} data-value={option.Location__c}
+                                data-id={option.IATACode__c}
+                                data-name='Departure'>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                    <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-truncate" title="Option ABCDEFGHIJKLMNOPQRSTUVWXYZ" >{option.Name} - {option.IATACode__c}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ARRIVAL -->
+        <div class="slds-combobox_container">
+
+            <!-- Search Input -->
+            <lightning-input
+                disabled={disabled} 
+                required={isRequired}
+                label="Search Arrival Airport"
+                type="search"
+                value={selectedArrival}
+                name="arrival"
+                onchange={handleInputChange} 
+                onblur={handleOnBlur}>
+            </lightning-input>
+
+            
+            <div class="second slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+
+                <div class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox">
+                    <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                        <template for:each={autoCompleteOptions2} for:item="option">
+                            <li key={option.IATACode__c} role="presentation" class="slds-listbox__item"
+                                onclick={handleOptionClick} data-value={option.Location__c}
+                                data-id={option.IATACode__c}
+                                data-name='Arrival'>
+                                <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                    <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-truncate" title="Option ABCDEFGHIJKLMNOPQRSTUVWXYZ" >{option.Name} - {option.IATACode__c}</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="slds-box">
+            <p> {distance} km</p>
+        </div>
+        <br>
+        <button class="slds-button slds-button_brand" onclick={handleFlyCreate} disabled={disabledButton}>Create Flight</button>
+    </div>
+    
+
+    
+    <article class="slds-card" if:true={renderData}>
+   
+            <div class="slds-card__header slds-grid" >
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="custom:custom20" size="x-small" title="x-small size">
+                    </lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                    
+                    <span>Flight</span>
+                    
+                </h2>
+                </div>
+            
+            </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <h1>Data insert</h1>
+                <ul>
+                    <li>Departure Airport: {departureAirportName}</li>
+                    <li>Arrival Airport: {arrivalAirportName}</li>
+                    <li>Arrival Airport: {distance} km</li>
+                </ul>
+            </div>
+            <footer class="slds-card__footer">
+            <a class="slds-card__footer-action" onclick={viewRecord}> View on salesforce
+                
+            </a>
+            </footer>
+        
+    </article>
+</template>
